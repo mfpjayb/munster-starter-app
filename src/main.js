@@ -1,7 +1,8 @@
-import { Module } from 'munster';
-import AppRoot from './AppRoot';
+import { Global } from 'munster';
+import Root from './Root';
 
-new Module({
-  selector: 'app-root',
-  component: AppRoot
+new Global({
+  components: [
+    Root
+  ]
 });
