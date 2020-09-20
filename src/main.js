@@ -1,4 +1,4 @@
-import { Global } from 'munster';
+import { Global } from 'munster-modules';
 import Root from './Root';
 
 new Global({

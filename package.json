@@ -18,6 +18,7 @@
     "parcel-bundler": "^1.12.4"
   },
   "dependencies": {
-    "munster": "0.0.5"
+    "munster": "0.0.5",
+    "munster-modules": "0.0.1"
   }
 }
