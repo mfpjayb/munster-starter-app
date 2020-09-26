@@ -1,7 +1,7 @@
 {
   "name": "munster-starter-app",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/main.js",
   "scripts": {
     "start": "parcel -p 4000 watch index.html",
     "build": "parcel build index.html"
@@ -12,13 +12,12 @@
   "description": "",
   "devDependencies": {
     "@babel/core": "^7.11.6",
-    "@babel/preset-env": "^7.11.5",
-    "@babel/preset-react": "^7.10.4",
-    "munster-transformer": "0.0.8",
+    "munster-preset": "0.0.3",
     "parcel-bundler": "^1.12.4"
   },
   "dependencies": {
-    "munster": "0.0.8",
-    "munster-modules": "0.0.3"
+    "munster": "0.0.9",
+    "munster-modules": "0.0.4",
+    "munster-props": "0.0.3"
   }
 }
