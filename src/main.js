@@ -1,5 +1,5 @@
 import { Global } from 'munster-modules';
-import Root from './Root';
+import Root from './Root.html';
 
 new Global({
   components: [
