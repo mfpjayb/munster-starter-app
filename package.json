@@ -12,6 +12,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "file-loader": "^6.1.1",
     "munster-loader": "0.0.1",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",

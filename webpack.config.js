@@ -1,5 +1,7 @@
 const path = require('path');
 
+const isProd = process.env.NODE_ENV === 'production';
+
 module.exports = {
   mode: 'development',
   entry: './src/main.js',
@@ -9,7 +11,17 @@ module.exports = {
     publicPath: '/dist'
   },
   devServer: {
-    port: 4000
+    port: 4000,
+
+
+    /**
+     * route all request to index.html for spa
+     */
+    historyApiFallback: {
+        index: '/index.html'
+    },
+
+
   },
   module: {
     rules: [
@@ -22,7 +34,17 @@ module.exports = {
         exclude: [
           path.resolve(__dirname, 'src/assets')
         ]
-      }
+      },
+
+        {
+            test: /\.(png|svg|jpg|gif)$/,
+            use: [
+                'file-loader',
+            ],
+            include: [
+                path.resolve(__dirname, 'src/assets')
+            ],
+        },
     ]
   },
 
@@ -30,5 +52,5 @@ module.exports = {
   /**
    * prevent source map warnings in browser
    */
-  devtool: 'eval-source-map'
+  devtool: isProd ? false : 'eval-source-map'
 };
