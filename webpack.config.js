@@ -36,14 +36,13 @@ module.exports = {
         ]
       },
 
+        /**
+         * to allow importing images and set it to img tag source
+         */
         {
             test: /\.(png|svg|jpg|gif)$/,
-            use: [
-                'file-loader',
-            ],
-            include: [
-                path.resolve(__dirname, 'src/assets')
-            ],
+            use: [ 'file-loader', ],
+            include: [ path.resolve(__dirname, 'src/assets') ],
         },
     ]
   },
