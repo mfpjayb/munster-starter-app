@@ -18,13 +18,31 @@ module.exports = {
      * route all request to index.html for spa
      */
     historyApiFallback: {
-        index: '/index.html'
+      index: '/index.html'
     },
 
 
   },
   module: {
     rules: [
+      /**
+       * Babel loader config
+       */
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            plugins: ['@babel/plugin-proposal-class-properties'] // allow class properties
+          }
+        },
+        exclude: [
+          path.resolve(__dirname, 'src/assets'),
+          path.resolve(__dirname, 'node_modules'),
+        ]
+      },
       {
         test: /\.html/,
         use: 'munster-loader',
@@ -36,14 +54,14 @@ module.exports = {
         ]
       },
 
-        /**
-         * to allow importing images and set it to img tag source
-         */
-        {
-            test: /\.(png|svg|jpg|gif)$/,
-            use: [ 'file-loader', ],
-            include: [ path.resolve(__dirname, 'src/assets') ],
-        },
+      /**
+       * to allow importing images and set it to img tag source
+       */
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ['file-loader',],
+        include: [path.resolve(__dirname, 'src/assets')],
+      },
     ]
   },
 
