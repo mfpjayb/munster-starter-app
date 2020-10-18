@@ -24,6 +24,18 @@ module.exports = {
   module: {
     rules: [
 
+      /**
+       * CSS loaders
+       */
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+        exclude: [
+          path.resolve(__dirname, 'src/assets'),
+          path.resolve(__dirname, 'node_modules'),
+        ]
+      },
+
 
       /**
        * Babel loader config
