@@ -16,14 +16,14 @@
     "@babel/preset-env": "^7.12.1",
     "babel-loader": "^8.1.0",
     "file-loader": "^6.1.1",
-    "munster-loader": "0.0.1",
+    "munster-loader": "0.0.7",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "munster": "0.0.11",
-    "munster-modules": "0.0.5",
+    "munster": "0.0.12",
+    "munster-modules": "0.0.6",
     "munster-props": "0.0.5"
   }
 }
