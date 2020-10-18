@@ -1,7 +1,5 @@
 const path = require('path');
 
-const isProd = process.env.NODE_ENV === 'production';
-
 module.exports = {
   mode: 'development',
   entry: './src/main.js',
@@ -25,6 +23,8 @@ module.exports = {
   },
   module: {
     rules: [
+
+
       /**
        * Babel loader config
        */
@@ -35,7 +35,7 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env'],
-            plugins: ['@babel/plugin-proposal-class-properties'] // allow class properties
+            plugins: ['@babel/plugin-proposal-class-properties']
           }
         },
         exclude: [
@@ -43,6 +43,28 @@ module.exports = {
           path.resolve(__dirname, 'node_modules'),
         ]
       },
+      {
+        test: /\.html$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            plugins: ['@babel/plugin-proposal-class-properties']
+          }
+        },
+        include: [
+          path.resolve(__dirname, 'src')
+        ],
+        exclude: [
+          path.resolve(__dirname, 'src/assets')
+        ]
+      },
+
+
+      /**
+       * Munster loader
+       */
       {
         test: /\.html/,
         use: 'munster-loader',
@@ -54,14 +76,17 @@ module.exports = {
         ]
       },
 
+
       /**
        * to allow importing images and set it to img tag source
        */
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: ['file-loader',],
+        use: 'file-loader',
         include: [path.resolve(__dirname, 'src/assets')],
       },
+
+
     ]
   },
 
@@ -69,5 +94,7 @@ module.exports = {
   /**
    * prevent source map warnings in browser
    */
-  devtool: isProd ? false : 'eval-source-map'
+  devtool: 'eval-source-map'
+
+
 };
