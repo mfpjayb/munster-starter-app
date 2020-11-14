@@ -17,15 +17,15 @@
     "babel-loader": "^8.1.0",
     "css-loader": "^5.0.0",
     "file-loader": "^6.1.1",
-    "munster-loader": "0.0.7",
+    "munster-loader": "0.0.8",
     "style-loader": "^2.0.0",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "munster": "0.0.12",
-    "munster-modules": "0.0.6",
-    "munster-props": "0.0.5"
+    "munster": "0.0.15",
+    "munster-modules": "0.0.7",
+    "munster-props": "0.0.7"
   }
 }
