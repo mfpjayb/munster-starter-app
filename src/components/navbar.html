@@ -1,0 +1,58 @@
+<template>
+    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+        </button>
+        <ul class="navbar-nav">
+            <li class="nav-item">SCANNED DOCUMENTS MANAGEMENT SYSTEM</li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small text-capitalize">
+                        <span>{`${this.user.firstName} ${this.user.lastName}`}</span>
+                    </span>
+                    <img class="img-profile rounded-circle" src={ProfilePic} />
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="#">
+                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        <span>Profile</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="javascript:;" on-click={this.logout}>
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</template>
+
+<script>
+import Router from 'munster-router';
+import ProfilePic from '../assets/profile-placeholder.jpg';
+import AuthService from '../services/auth.service';
+
+export default class Navbar {
+
+    user = {};
+    authService = new AuthService();
+
+    $connected() {
+        this.$store.authUser.watch(user => {
+            this.user = user;
+            this.$apply();
+        });
+    }
+
+    logout() {
+        this.authService.removeToken();
+        Router.navigate('/');
+    }
+}
+</script>

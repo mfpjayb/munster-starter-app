@@ -1,0 +1,66 @@
+<template>
+    <form on-prevent:submit={this.submit} class="user">
+        <div class={this.state.errorMessage ? "alert alert-danger" : ""} role="alert">{this.state.errorMessage}</div>
+        <div class="form-group">
+            <input type="text" class="form-control form-control-user" placeholder="Enter username"
+                v:model={this.state.username} />
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control form-control-user" placeholder="Password"
+                v:model={this.state.password} />
+        </div>
+        <div class="form-group">
+            <div class="custom-control custom-checkbox small">
+                <input type="checkbox" class="custom-control-input" id="customCheck" />
+                <label class="custom-control-label" for="customCheck">Remember Me</label>
+            </div>
+        </div>
+        <button class="btn btn-primary btn-user btn-block">
+            Login
+        </button>
+        <hr />
+        <button on:click={this.changeLoginType} type="button" class="btn btn-facebook btn-user btn-block">
+            <span>{this.isAdmin ? 'Login as staff' : 'Login as admin'}</span>
+        </button>
+    </form>
+</template>
+
+<script>
+import Router from "munster-router";
+import AuthService from '../services/auth.service';
+
+export default class LoginForm {
+
+    authService = new AuthService();
+    isAdmin = false;
+
+    state = {
+        username: '',
+        password: '',
+        errorMessage: ''
+    };
+
+    $connected() {
+        this.$store.isAdminLogin.watch((value) => {
+            this.isAdmin = value;
+            this.$apply();
+        });
+    }
+
+    changeLoginType() {
+        this.$store.isAdminLogin = !this.isAdmin;
+    }
+
+    async submit() {
+        try {
+            const { username, password } = this.state;
+            const userType = this.isAdmin ? 'admin' : 'staff';
+            const response = await this.authService.login(username, password, userType);
+            this.authService.setToken(response);
+            Router.navigate('/auth');
+        } catch (error) {
+            this.state.errorMessage = error.response.data.message;
+        }
+    }
+}
+</script>

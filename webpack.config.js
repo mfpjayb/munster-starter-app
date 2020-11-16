@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: './src/main.js',
+  entry: ['@babel/polyfill', './src/main.js'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
@@ -69,7 +69,8 @@ module.exports = {
           path.resolve(__dirname, 'src')
         ],
         exclude: [
-          path.resolve(__dirname, 'src/assets')
+          path.resolve(__dirname, 'src/assets'),
+          path.resolve(__dirname, 'node_modules')
         ]
       },
 
@@ -84,7 +85,8 @@ module.exports = {
           path.resolve(__dirname, 'src')
         ],
         exclude: [
-          path.resolve(__dirname, 'src/assets')
+          path.resolve(__dirname, 'src/assets'),
+          path.resolve(__dirname, 'node_modules')
         ]
       },
 

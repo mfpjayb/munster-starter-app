@@ -1,0 +1,30 @@
+<template>
+        <div id="wrapper">
+
+            <app-sidebar />
+
+            <div id="content-wrapper" class="d-flex flex-column">
+                <div id="content">
+
+                    <app-navbar />
+
+                    <plug-router-outlet></plug-router-outlet>
+
+                </div>
+            </div>
+        </div>
+</template>
+
+<script>
+import AuthService from '../services/auth.service';
+
+export default class Auth {
+
+    authService = new AuthService();
+
+    async $connected() {
+        const response = await this.authService.authUser();
+        this.$store.authUser = response;
+    }
+}
+</script>

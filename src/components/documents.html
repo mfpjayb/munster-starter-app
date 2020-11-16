@@ -1,0 +1,104 @@
+<template>
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary"></h6>
+                <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="javascript:;" role="button" id="dropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                        aria-labelledby="dropdownMenuLink">
+                        <a on:click={this.newFolder} class="dropdown-item" href="javascript:;">New Folder</a>
+                        <div class="dropdown-divider"></div>
+                        <a on:click={this.browseFile} class="dropdown-item" href="javascript:;">Upload A File</a>
+                        <input on:change={this.uploadFile} v:ref={this.$refs.fileInput} class="d-none" type="file"
+                            accept="application/pdf" />
+                    </div>
+                </div>
+            </div>
+            <div class="card-body" style="min-height: calc(100vh - 169px);">
+
+                <div v:if={this.fetched}>
+                    <app-folders />
+                    <app-files />
+                </div>
+
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import FileService from "../services/file.service";
+import FolderService from "../services/folder.service";
+
+export default class Documents {
+    $refs = {};
+    folderService = new FolderService();
+    fileService = new FileService();
+    fetched = false;
+    files = [];
+    folders = [];
+
+    $subscriptions = [];
+
+    $connected() {
+        this.fetchFolders();
+        this.fetchFiles();
+        this.$subscriptions.push(this.$router.onRouteChange.subscribe(() => {
+            this.fetchFolders();
+            this.fetchFiles();
+        }));
+        this.$store.files.watch(files => {
+            this.files = files;
+            this.$apply();
+        });
+        this.$store.folders.watch(folders => {
+            this.folders = folders;
+            this.$apply();
+        });
+    }
+
+    $disconnected() {
+        this.$subscriptions.forEach(item => item.unsubscribe());
+    }
+
+    async fetchFolders() {
+        const response = await this.folderService.fetch(this.$router.params().parentId);
+        this.$store.folders = response;
+        this.fetched = true;
+    }
+
+    async fetchFiles() {
+        const response = await this.fileService.fetch(this.$router.params().parentId);
+        this.$store.files = response;
+        this.fetched = true;
+    }
+
+    async newFolder() {
+        const response = await this.folderService.newFolder(this.$router.params().parentId);
+        this.$store.folders = [
+            ...this.$store.folders.value(),
+            response
+        ];
+    }
+
+    browseFile() {
+        this.$refs.fileInput.click();
+    }
+
+    async uploadFile() {
+        const parentId = this.$router.params().parentId;
+        const file = this.$refs.fileInput.files[0];
+        if (file) {
+            const response = await this.fileService.upload(file, parentId);
+            this.$store.files = [
+                this.$store.files.value(),
+                response
+            ];
+        }
+    }
+}
+</script>

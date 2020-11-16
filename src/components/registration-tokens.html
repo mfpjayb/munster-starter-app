@@ -1,0 +1,80 @@
+<template>
+        <div class="container-fluid">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Registration Tokens</h6>
+                    <div class="dropdown no-arrow">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                            <a on:click={this.generateToken} class="dropdown-item" href="javascript:;">Create New Token</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse show" id="collapseCardExample">
+                    <div class="card-body">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Token</th>
+                                    <th>Expiration</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Token</th>
+                                    <th>Expiration</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <tr v:for={this.tokens} v:for-item="token" v:for-index="index">
+                                    <td>{index + 1}</td>
+                                    <td>{token.token}</td>
+                                    <td>{new Date(token.expiration).toDateString()}</td>
+                                    <td>{token.status}</td>
+                                    <td class="py-2">
+                                        <button on:click={() => this.removeToken(token)} class="btn btn-danger btn-sm">Remove</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+</template>
+
+<script>
+import RegistrationTokenService from "../services/registration-token.service";
+
+export default class RegistrationTokens {
+
+    tokens = [];
+    registrationTokenService = new RegistrationTokenService();
+
+    async $connected() {
+        const response = await this.registrationTokenService.fetch();
+        this.tokens = response;
+        this.$apply();
+    }
+
+    async generateToken() {
+        const random =  Math.random().toString(36).substr(2);
+        const response = await this.registrationTokenService.create(random);
+        this.tokens = [...this.tokens, response];
+        this.$apply();
+    }
+
+    async removeToken(token) {
+        this.tokens = this.tokens.filter(item => item._id !== token._id);
+        this.registrationTokenService.remove(token._id);
+    }
+}
+</script>

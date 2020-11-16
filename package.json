@@ -24,8 +24,12 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "axios": "^0.21.0",
     "munster": "0.0.15",
     "munster-modules": "0.0.7",
-    "munster-props": "0.0.7"
+    "munster-props": "0.0.7",
+    "munster-router": "0.0.20",
+    "munster-store": "0.0.8"
   }
 }

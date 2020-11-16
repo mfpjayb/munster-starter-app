@@ -1,0 +1,85 @@
+<template>
+    <div class="container-fluid">
+        <div class="card shadow mb-3">
+            <div class="card-body">
+                <button
+                    on:dragenter={this.preventDefaultAction}
+                    on:dragover={this.preventDefaultAction}
+                    on:dragleave={this.preventDefaultAction}
+                    on:drop={this.dropEvent}
+                    on:click={this.browseFiles} class="upload-btn">
+                    <div class="drop-upload-section">
+                        <h2>
+                            <i class="fa fa-upload"></i>
+                        </h2>
+                        <h3>Drop files or click here</h3>
+                    </div>
+                </button>
+                <input
+                    class="d-none"
+                    v:ref={this.$refs.fileInput}
+                    on:input={this.uploadFile}
+                    type="file"
+                    accept="application/pdf"
+                />
+            </div>
+        </div>
+        <div class="card shadow">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">All Uploaded Files</h6>
+            </div>
+            <div class="card-body">
+
+                <app-files></app-files>
+
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import FileService from "../services/file.service";
+
+export default class Upload {
+
+    fileService = new FileService();
+    $refs = {};
+
+    async $connected() {
+        const response = await this.fileService.fetchAll();
+        this.$store.files = response;
+        this.$apply();
+    }
+
+    async upload(file) {
+        const response = await this.fileService.upload(file);
+        this.$store.files = [
+            ...this.$store.files.value(),
+            response
+        ];
+        this.$apply();
+    }
+
+    async uploadFile() {
+        const file = this.$refs.fileInput.files[0];
+        this.upload(file);
+    }
+
+    preventDefaultAction(event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
+    dropEvent(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        const dt = event.dataTransfer;
+        const file = dt.files[0];
+        this.upload(file);
+    }
+
+    browseFiles() {
+        this.$refs.fileInput.click();
+    }
+}
+</script>

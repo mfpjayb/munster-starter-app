@@ -1,0 +1,116 @@
+<template>
+      <div class="container-fluid">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Training</h6>
+            <div class="dropdown no-arrow">
+              <a
+                class="dropdown-toggle"
+                href="#"
+                role="button"
+                id="dropdownMenuLink"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+              </a>
+              <div
+                class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                aria-labelledby="dropdownMenuLink"
+              >
+                <a
+                  class="dropdown-item"
+                  href="javascript:;"
+                  data-toggle="modal"
+                  data-target="#new-training"
+                >New Training</a>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table
+                class="table table-bordered"
+                id="dataTable"
+                width="100%"
+                cellspacing="0"
+              >
+                <thead>
+                  <tr>
+                    <th>Text</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th>Text</th>
+                    <th>Action</th>
+                  </tr>
+                </tfoot>
+                <tbody>
+                  <tr v:for={this.trainings} v:for-item="$training">
+                    <td class="text-capitalize">
+                      <span class="training-text">{$training.text}</span>
+                    </td>
+                    <td class="py-2">
+                      <button
+                        on:click={() => this.unlearn($training)}
+                        class="btn btn-sm btn-danger"
+                      >
+                        Unlearn
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <app-create-training-modal
+          prop-categoryKey={this.categoryKey}
+          prop-newTrainings={this.newTrainings.bind(this)}
+        />
+
+      </div>
+</template>
+
+<script>
+import TrainingService from "../services/training.service";
+
+export default class Training {
+
+  trainingService = new TrainingService();
+  trainings = [];
+  categoryKey = '';
+
+  $connected() {
+    this.fetchTrainings();
+    this.$router.onRouteChange.subscribe(async () => {
+      this.fetchTrainings();
+    });
+  }
+
+  async fetchTrainings() {
+      const { categoryKey } = this.$router.params();
+      const response = await this.trainingService.fetch(categoryKey);
+      this.categoryKey = categoryKey;
+      this.trainings = response;
+      this.$apply();
+  }
+
+  async unlearn(category) {
+    await this.trainingService.unlearn(category._id);
+    this.trainings = this.trainings.filter(item => item._id !== category._id)
+    this.$apply();
+  }
+
+  newTrainings(trainings) {
+    this.trainings = [
+      ...this.trainings,
+      ...trainings
+    ];
+  }
+}
+</script>
