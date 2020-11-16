@@ -4,12 +4,18 @@
             <h1 class="h3 mb-0 text-gray-800">Home Page</h1>
         </div>
         <div class="row">
-            <div v:for={this.getLinks()} on:click={()=> Router.navigate(`/auth/report/${$item.link}`)} class="col-2 mb-4 home-document-links">
-                <div class={`card ${$item.bg} text-white shadow`}>
+            <div v:for={this.getLinks()} on:click={()=> Router.navigate(`/auth/report/${$item.link}`)} class="col-xl-3 col-md-6 mb-4 home-document-links">
+                <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
-                        <span><i class="fa fa-file"></i></span>
-                        <br />
-                        <div class="text-white-50 small ellipsis-text">{$item.text}</div>
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{$item.text}</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-file fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -18,34 +24,34 @@
 </template>
 
 <script>
-import Router from "munster-router";
-import CategoryService from "../services/category.service";
+    import Router from "munster-router";
+    import CategoryService from "../services/category.service";
 
-export default class Home {
+    export default class Home {
 
-    categoryService = new CategoryService();
-    categoryList = [];
+        categoryService = new CategoryService();
+        categoryList = [];
 
-    async $connected() {
-        this.$store.category.watch(category => {
-            this.categoryList = category.list;
-        });
+        async $connected() {
+            this.$store.category.watch(category => {
+                this.categoryList = category.list;
+            });
 
-        const response = await this.categoryService.fetch();
-        this.$store.category = {
-            ...this.$store.category.value(),
-            list: response
-        };
-        this.$apply();
+            const response = await this.categoryService.fetch();
+            this.$store.category = {
+                ...this.$store.category.value(),
+                list: response
+            };
+            this.$apply();
+        }
+
+        getLinks() {
+            const bgs = ['bg-primary', 'bg-danger', 'bg-success', 'bg-warning'];
+            return this.categoryList.map((item, index) => ({
+                text: item.category,
+                bg: bgs[index % 4],
+                link: item.categoryKey
+            }))
+        }
     }
-
-    getLinks() {
-        const bgs = ['bg-primary', 'bg-danger', 'bg-success', 'bg-warning'];
-        return this.categoryList.map((item, index) => ({
-            text: item.category,
-            bg: bgs[index % 4],
-            link: item.categoryKey
-        }))
-    }
-}
 </script>

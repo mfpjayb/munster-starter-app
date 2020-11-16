@@ -27,6 +27,7 @@ import Report from './components/report.html';
 import RegistrationTokens from './components/registration-tokens.html';
 import UserReport from './components/user-report.html';
 import SearchFile from './components/search-file.html';
+import Profile from './components/profile.html';
 
 const routes = [
   { path: '/', component: Login, exact: true, middleware: [GuestGuard] },
@@ -44,7 +45,8 @@ const routes = [
       { path: '/auth/report/:categoryKey', component: Report },
       { path: '/auth/registration-tokens', component: RegistrationTokens },
       { path: '/auth/users-reports', component: UserReport },
-      { path: '/auth/search', component: SearchFile }
+      { path: '/auth/search', component: SearchFile },
+      { path: '/auth/profile', component: Profile }
     ]
   },
 ]
@@ -66,6 +68,7 @@ new Global({
     Root,
     Login,
     LoginForm,
+    Profile,
     Auth,
     Navbar,
     Sidebar,
