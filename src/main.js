@@ -1,4 +1,5 @@
 import './style.css';
+import './modules/material.css';
 import { Module, initModule } from 'munster-module';
 import { Router } from 'munster-router';
 import Root from './Root.html';
@@ -7,6 +8,7 @@ import { ButtonsModule } from './modules/button/buttons.module';
 import { InputsModule } from './modules/input/inputs.module';
 import { CardsModule } from './modules/card/cards.module';
 import { LoginModule } from './components/login/login.module';
+import { BadgeModule } from './modules/badge/badge.module';
 
 const routes = [
   { path: '/ui-kit', component: UIKit },
@@ -25,7 +27,8 @@ class MainModule extends Module {
   modules = [
     ButtonsModule,
     InputsModule,
-    CardsModule
+    CardsModule,
+    BadgeModule
   ];
 
   plugins = [

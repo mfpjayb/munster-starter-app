@@ -1,36 +1,87 @@
 <template>
-    <div>
-        <div>
-            <button mat:button>Default</button>
-            <button mat:button-primary>Primary</button>
+    <div class="ui-kit-page">
+        <h1>Badge</h1>
+        <p><span mat:badge={this.badge}>Default Badge</span></p>
+        <p><span mat:badge-primary={2}>Primary Badge</span></p>
+        <p><span mat:badge-danger={2}>Danger Badge</span></p>
+        <p><span mat:badge-success={2}>Success Badge</span></p>
 
-            <button mat:button-outline>Default outline</button>
-            <button mat:button-primary-outline>Primary outline</button>
 
-            <input mat:input placeholder="Sample input" />
-        </div>
+        <h1>Buttons</h1>
         <div>
-            <mat-card>
-                <span slot="header">Sign in here!</span>
-                <p slot="body" style="margin-top: 0;" class="body-p">Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit. Aenean a augue vitae nibh tempus gravida sit amet id purus. Quisque ultricies porta libero, ac
-                    hendrerit nunc finibus in. Fusce purus mauris, volutpat a feugiat sed, sagittis vitae nulla. Quisque
-                    at massa nulla. Duis risus lectus, porttitor ac bibendum et, dapibus a nulla. Cras posuere ligula et
-                    purus molestie, sagittis imperdiet lorem sodales. Praesent blandit enim ac sollicitudin tristique.
-                    Curabitur mi lectus, molestie congue iaculis a, porttitor a odio. Ut pharetra, lacus in blandit
-                    tincidunt, arcu massa auctor magna, eget elementum mauris nisi sit amet nisl. Nunc porta orci sit
-                    amet lorem egestas molestie.</p>
-                <p slot="body" style="margin-top: 0;" class="body-p">Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit. Aenean a augue vitae nibh tempus gravida sit amet id purus. Quisque ultricies porta libero, ac
-                    hendrerit nunc finibus in. Fusce purus mauris, volutpat a feugiat sed, sagittis vitae nulla. Quisque
-                    at massa nulla. Duis risus lectus, porttitor ac bibendum et, dapibus a nulla. Cras posuere ligula et
-                    purus molestie, sagittis imperdiet lorem sodales. Praesent blandit enim ac sollicitudin tristique.
-                    Curabitur mi lectus, molestie congue iaculis a, porttitor a odio. Ut pharetra, lacus in blandit
-                    tincidunt, arcu massa auctor magna, eget elementum mauris nisi sit amet nisl. Nunc porta orci sit
-                    amet lorem egestas molestie.</p>
-                <div slot="footer">
-                </div>
-            </mat-card>
+            <h4>Basic Buttons</h4>
+            <button mat:button>Basic</button>
+            <button mat:button-primary>Basic</button>
+            <button mat:button-danger>Basic</button>
+            <button mat:button-success>Basic</button>
+            <br /><br />
+            <button mat:button-outline>Outline</button>
+            <button mat:button-outline-primary>Outline</button>
+            <button mat:button-outline-danger>Outline</button>
+            <button mat:button-outline-success>Outline</button>
+            <br /><br />
+            <button mat:button-raised>Raised</button>
+            <button mat:button-raised-primary>Raised</button>
+            <button mat:button-raised-danger>Raised</button>
+            <button on:click={this.clickMe} mat:button-raised-success>Raised</button>
         </div>
+
+
+        <h1>Inputs</h1>
+
+        <input mat:input placeholder="Sample input" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <mat-card>
+            <span slot="header">Sign in here!</span>
+            <p slot="body" style="margin-top: 0;" class="body-p">Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit. Aenean a augue vitae nibh tempus gravida sit amet id purus. Quisque ultricies porta libero, ac
+                hendrerit nunc finibus in. Fusce purus mauris, volutpat a feugiat sed, sagittis vitae nulla. Quisque
+                at massa nulla. Duis risus lectus, porttitor ac bibendum et, dapibus a nulla. Cras posuere ligula et
+                purus molestie, sagittis imperdiet lorem sodales. Praesent blandit enim ac sollicitudin tristique.
+                Curabitur mi lectus, molestie congue iaculis a, porttitor a odio. Ut pharetra, lacus in blandit
+                tincidunt, arcu massa auctor magna, eget elementum mauris nisi sit amet nisl. Nunc porta orci sit
+                amet lorem egestas molestie.</p>
+            <p slot="body" style="margin-top: 0;" class="body-p">Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit. Aenean a augue vitae nibh tempus gravida sit amet id purus. Quisque ultricies porta libero, ac
+                hendrerit nunc finibus in. Fusce purus mauris, volutpat a feugiat sed, sagittis vitae nulla. Quisque
+                at massa nulla. Duis risus lectus, porttitor ac bibendum et, dapibus a nulla. Cras posuere ligula et
+                purus molestie, sagittis imperdiet lorem sodales. Praesent blandit enim ac sollicitudin tristique.
+                Curabitur mi lectus, molestie congue iaculis a, porttitor a odio. Ut pharetra, lacus in blandit
+                tincidunt, arcu massa auctor magna, eget elementum mauris nisi sit amet nisl. Nunc porta orci sit
+                amet lorem egestas molestie.</p>
+            <div slot="footer">
+            </div>
+        </mat-card>
     </div>
 </template>
+
+<script>
+    export default class UIKit {
+        badge = 0;
+        clickMe() {
+            this.badge = this.badge + 1;
+            console.log('hello');
+        }
+    }
+</script>
+
+<style>
+    .ui-kit-page {
+        padding: 15px;
+    }
+</style>
