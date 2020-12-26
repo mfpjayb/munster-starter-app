@@ -10,7 +10,8 @@ import { LoginModule } from './components/login/login.module';
 
 const routes = [
   { path: '/ui-kit', component: UIKit },
-  { path: '/login', module: LoginModule }
+  { path: '/login', module: LoginModule }, // eager loading module
+  { path: '/register', module: import('./components/register/register.module').then(mod => mod.RegisterModule) }, // Lazy loading module
 ];
 
 class MainModule extends Module {

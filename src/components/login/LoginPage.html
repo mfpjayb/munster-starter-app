@@ -1,11 +1,11 @@
 <template>
     <div class="login-page">
-        <form>
+        <form on-prevent:submit={this.submit}>
             <mat-card>
                 <span slot="card-header">Sign in here!</span>
                 <div slot="card-body">
-                    <input mat:input placeholder="Email address" class="form-input" type="email" required />
-                    <input mat:input placeholder="Password" class="form-input" type="password" />
+                    <input mat:input v:model={this.email} placeholder="Email address" class="form-input" type="email" required />
+                    <input mat:input v:model={this.password} placeholder="Password" class="form-input" type="password" />
                 </div>
                 <div slot="card-actions-left">
                     <plug-link class="form-link" href="/register">Create an account</plug-link>
@@ -18,6 +18,18 @@
     </div>
 </template>
 
+<script>
+    export default class LoginPage {
+        email = '';
+        password = '';
+
+        submit() {
+            console.log(this.email);
+            console.log(this.password);
+        }
+    }
+</script>
+
 <style>
     .login-page {
         display: flex;
@@ -27,7 +39,6 @@
     }
     .form-input {
         background: #f1f5ff!important;
-        border-color: #f1f5ff;
     }
     .form-link {
         font-size: 13px;

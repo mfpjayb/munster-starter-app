@@ -9,26 +9,22 @@ export class ButtonPlugin {
   }
 
   matDefault(name, valueCaller, element) {
-    this.addClass(element, 'mat-btn')
-    this.addClass(element, 'default')
+    this.addClass(element, ['mat-btn', 'default']);
   }
 
   matPrimary(name, valueCaller, element) {
-    this.addClass(element, 'mat-btn')
-    this.addClass(element, 'primary')
+    this.addClass(element, ['mat-btn', 'primary']);
   }
 
   matDefaultOutline(name, valueCaller, element) {
-    this.matDefault(name, valueCaller, element);
-    this.addClass(element, 'outline')
+    this.addClass(element, ['mat-btn', 'default', 'outline']);
   }
 
   matPrimaryOutline(name, valueCaller, element) {
-    this.matPrimary(name, valueCaller, element);
-    this.addClass(element, 'outline')
+    this.addClass(element, ['mat-btn', 'primary', 'outline']);
   }
 
-  addClass(element, cls) {
-    element.classList.add(cls);
+  addClass(element, classArray) {
+    classArray.forEach(cls => element.classList.add(cls));
   }
 }
