@@ -1,12 +1,8 @@
 import { Module } from 'munster-module';
-import Input from './Input.html';
+import { InputPlugin } from './InputPlugin';
 
 export class InputsModule extends Module {
-
-  prefix = 'mat';
-
-  components = [
-    Input
+  exportPlugins = [
+    InputPlugin
   ];
-
 }

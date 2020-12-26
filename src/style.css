@@ -1,5 +1,84 @@
 html, body { margin: 0; padding: 0; height: 100%; }
 
+/**
+ * FRAMEWORK
+ */
 body {
     background: #dce3e8;
+    font-size: 14px;
 }
+
+a {
+    color: #4581e9;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+.mat-input {
+    background: white;
+    border-radius: 3px;
+    border: solid 1px #d9deec;
+    padding: 8px;
+    height: 31px;
+    box-sizing: border-box;
+    outline: none;
+    font-family: Roboto;
+    font-size: 12px;
+}
+.mat-input:focus {
+    border: solid 1px #999999;
+}
+.mat-input::placeholder {
+    color: #c5d0df;
+}
+
+
+.mat-btn {
+    height: 30px;
+    padding: 1px 15px;
+    border-radius: 3px;
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 400;
+    cursor: pointer;
+    box-sizing: border-box;
+    outline: none;
+}
+.mat-btn.default {
+    color: #333;
+    background: white;
+    border: solid 1px white;
+}
+.mat-btn.default:hover {
+    border: solid 1px #f5f5f5;
+    background: #f5f5f5;
+}
+.mat-btn.primary {
+    color: white;
+    background: #4581e9;
+    border: solid 1px #4581e9;
+}
+
+.mat-btn.primary.outline {
+    color: #4581e9;
+    background: transparent;
+    border: solid 1px #4581e9;
+}
+.mat-btn.primary.outline:hover {
+    color: white;
+    background: #4581e9;
+    border: solid 1px #4581e9;
+}
+.mat-btn.default.outline {
+    background: transparent;
+    border: solid 1px #d9deec;
+}
+.mat-btn.default.outline:hover {
+    background: #f5f5f5;
+}
+
+/**
+ * FRAMEWORK
+ */

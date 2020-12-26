@@ -1,9 +1,8 @@
 import { Module } from 'munster-module';
-import Button from './Button.html';
+import { ButtonPlugin } from './ButtonPlugin';
 
 export class ButtonsModule extends Module {
-  prefix = 'mat';
-  components = [
-    Button
+  exportPlugins = [
+    ButtonPlugin
   ];
 }

@@ -6,9 +6,11 @@ import UIKit from './components/ui-kit/UIKit.html';
 import { ButtonsModule } from './modules/button/buttons.module';
 import { InputsModule } from './modules/input/inputs.module';
 import { CardsModule } from './modules/card/cards.module';
+import { LoginModule } from './components/login/login.module';
 
 const routes = [
-  { path: 'ui-kit', component: UIKit }
+  { path: '/ui-kit', component: UIKit },
+  { path: '/login', module: LoginModule }
 ];
 
 class MainModule extends Module {
