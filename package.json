@@ -5,7 +5,8 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack",
-    "test": "karma start"
+    "test": "karma start",
+    "link": "npm link munster && npm link munster-module && npm link munster-loader && npm link munster-router"
   },
   "keywords": [],
   "author": "",
@@ -17,15 +18,12 @@
     "babel-loader": "^8.1.0",
     "css-loader": "^5.0.0",
     "file-loader": "^6.1.1",
-    "munster-loader": "0.0.8",
     "style-loader": "^2.0.0",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.12.1",
-    "munster": "0.0.15",
-    "munster-modules": "0.0.7"
+    "@babel/polyfill": "^7.12.1"
   }
 }

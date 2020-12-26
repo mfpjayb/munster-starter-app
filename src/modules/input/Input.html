@@ -1,0 +1,39 @@
+<template>
+    <input class="input" v:ref={this.$el} />
+</template>
+
+<script>
+    export default class Input {
+
+        $el;
+
+        static get observedAttributes() {
+            return ['placeholder', 'class', 'value'];
+        }
+
+        $attributeChanged(attrName, oldVal, newVal) {
+            this.$el.setAttribute(attrName, newVal);
+        }
+
+    }
+</script>
+
+<style>
+    .input {
+        background: white;
+        border-radius: 3px;
+        border: solid 1px #d9deec;
+        padding: 8px;
+        height: 31px;
+        box-sizing: border-box;
+        outline: none;
+        font-family: Roboto;
+        font-size: 12px;
+    }
+    .input:focus {
+        border: solid 1px #999999;
+    }
+    .input::placeholder {
+        color: #c5d0df;
+    }
+</style>
