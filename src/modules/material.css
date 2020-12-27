@@ -136,6 +136,15 @@ a:hover {
 .mat-btn.raised {
     box-shadow: var(--main-shadow);
 }
+.mat-btn.raised.primary {
+    border-bottom-color: #0756e0;
+}
+.mat-btn.raised.danger {
+    border-bottom-color: #981010;
+}
+.mat-btn.raised.success {
+    border-bottom-color: #129230;
+}
 
 
 .mat-badge {
@@ -191,6 +200,7 @@ a:hover {
     text-align: center;
     line-height: 30px;
     display: none;
+    font-weight: bold;
     color: white;
 }
 .mat-checkbox-box {
@@ -213,18 +223,107 @@ a:hover {
 .mat-checkbox-input:checked + .mat-checkbox .mat-checkbox-check {
     display: inline-block!important;
 }
-.mat-checkbox-input:checked + .mat-checkbox .mat-checkbox-box {
+.mat-checkbox.default .mat-checkbox-check {
+    color: #333;
+}
+.mat-checkbox-input:checked + .mat-checkbox.default .mat-checkbox-box {
+    background: var(--default-color);
+}
+.mat-checkbox-input:checked + .mat-checkbox.primary .mat-checkbox-box {
     background: var(--primary-color);
     border-color: var(--primary-color);
+}
+.mat-checkbox-input:checked + .mat-checkbox.danger .mat-checkbox-box {
+    background: var(--danger-color);
+    border-color: var(--danger-color);
+}
+.mat-checkbox-input:checked + .mat-checkbox.success .mat-checkbox-box {
+    background: var(--success-color);
+    border-color: var(--success-color);
 }
 .mat-checkbox-label {
     height: 30px;
     display: inline-block;
     line-height: 30px;
     vertical-align: middle;
+    font-family: Roboto;
+    font-size: 14px;
+    cursor: pointer;
 }
 
 
+.mat-radio {
+    position: relative;
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    border-radius: 50%;
+    cursor: pointer;
+    vertical-align: middle;
+}
+.mat-radio-check {
+    position: absolute;
+    top: 11px;
+    left: 11px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: none;
+}
+.mat-radio-circle {
+    box-sizing: border-box;
+    width: 16px;
+    height: 16px;
+    border: solid 2px #757575;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    top: 7px;
+    left: 7px;
+}
+.mat-radio input {
+    display: none;
+}
+.mat-radio-input {
+    display: none;
+}
+.mat-radio-input:checked + .mat-radio .mat-radio-check {
+    display: inline-block!important;
+}
+.mat-radio.default .mat-radio-check {
+    color: #333;
+}
+.mat-radio-input:checked + .mat-radio.default .mat-radio-check {
+    background: #333;
+    /* background: var(--default-color); */
+}
+.mat-radio-input:checked + .mat-radio.primary .mat-radio-circle {
+    border-color: var(--primary-color);
+}
+.mat-radio-input:checked + .mat-radio.primary .mat-radio-check {
+    background: var(--primary-color);
+}
+.mat-radio-input:checked + .mat-radio.danger .mat-radio-circle {
+    border-color: var(--danger-color);
+}
+.mat-radio-input:checked + .mat-radio.danger .mat-radio-check {
+    background: var(--danger-color);
+}
+.mat-radio-input:checked + .mat-radio.success .mat-radio-circle {
+    border-color: var(--success-color);
+}
+.mat-radio-input:checked + .mat-radio.success .mat-radio-check {
+    background: var(--success-color);
+}
+.mat-radio-label {
+    height: 30px;
+    display: inline-block;
+    line-height: 30px;
+    vertical-align: middle;
+    font-family: Roboto;
+    font-size: 14px;
+    cursor: pointer;
+}
 /**
  * FRAMEWORK
  */
