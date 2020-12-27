@@ -172,6 +172,59 @@ a:hover {
     background: var(--success-color);
 }
 
+
+.mat-checkbox {
+    position: relative;
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    border-radius: 50%;
+    cursor: pointer;
+    vertical-align: middle;
+}
+.mat-checkbox-check {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    line-height: 30px;
+    display: none;
+    color: white;
+}
+.mat-checkbox-box {
+    box-sizing: border-box;
+    width: 16px;
+    height: 16px;
+    border: solid 2px #757575;
+    border-radius: 2px;
+    display: inline-block;
+    position: absolute;
+    top: 7px;
+    left: 7px;
+}
+.mat-checkbox input {
+    display: none;
+}
+.mat-checkbox-input {
+    display: none;
+}
+.mat-checkbox-input:checked + .mat-checkbox .mat-checkbox-check {
+    display: inline-block!important;
+}
+.mat-checkbox-input:checked + .mat-checkbox .mat-checkbox-box {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+.mat-checkbox-label {
+    height: 30px;
+    display: inline-block;
+    line-height: 30px;
+    vertical-align: middle;
+}
+
+
 /**
  * FRAMEWORK
  */

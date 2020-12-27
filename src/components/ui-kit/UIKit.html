@@ -1,15 +1,17 @@
 <template>
     <div class="ui-kit-page">
-        <h1>Badge</h1>
-        <p><span mat:badge={this.badge}>Default Badge</span></p>
-        <p><span mat:badge-primary={2}>Primary Badge</span></p>
-        <p><span mat:badge-danger={2}>Danger Badge</span></p>
-        <p><span mat:badge-success={2}>Success Badge</span></p>
-
-
-        <h1>Buttons</h1>
         <div>
-            <h4>Basic Buttons</h4>
+            <h1>Badge</h1>
+            <p><span mat:badge={this.badge}>Default Badge</span></p>
+            <p><span mat:badge-primary={this.badge}>Primary Badge</span></p>
+            <p><span mat:badge-danger={this.badge}>Danger Badge</span></p>
+            <p><span mat:badge-success={this.badge}>Success Badge</span></p>
+            <button on:click={this.clickMe}>Increment Badge</button>
+        </div>
+
+
+        <div>
+            <h1>Buttons</h1>
             <button mat:button>Basic</button>
             <button mat:button-primary>Basic</button>
             <button mat:button-danger>Basic</button>
@@ -24,6 +26,47 @@
             <button mat:button-raised-primary>Raised</button>
             <button mat:button-raised-danger>Raised</button>
             <button on:click={this.clickMe} mat:button-raised-success>Raised</button>
+        </div>
+        <div>
+            <h1>Card</h1>
+            <mat-card style="width: 400px;">
+                <span slot="card-header">Sign in here!</span>
+                <div slot="card-header-actions">
+                    <button mat:button-raised>Btn</button>
+                </div>
+                <img slot="card-image" src="https://material.angular.io/assets/img/examples/shiba2.jpg" />
+                <p slot="card-body" style="margin-top: 0;" class="body-p">Lorem ipsum dolor sit amet, consectetur adipiscing
+                    elit. Aenean a augue vitae nibh tempus gravida sit amet id purus. Quisque ultricies porta libero, ac
+                    hendrerit nunc finibus in. Fusce purus mauris, volutpat a feugiat sed, sagittis vitae nulla. Quisque
+                    at massa nulla. Duis risus lectus, porttitor ac bibendum et, dapibus a nulla. Cras posuere ligula et
+                    purus molestie, sagittis imperdiet lorem sodales. Praesent blandit enim ac sollicitudin tristique.
+                    Curabitur mi lectus, molestie congue iaculis a, porttitor a odio. Ut pharetra, lacus in blandit
+                    tincidunt, arcu massa auctor magna, eget elementum mauris nisi sit amet nisl. Nunc porta orci sit
+                    amet lorem egestas molestie.</p>
+                <p slot="card-body" style="margin-top: 0;" class="body-p">Lorem ipsum dolor sit amet, consectetur adipiscing
+                    elit. Aenean a augue vitae nibh tempus gravida sit amet id purus. Quisque ultricies porta libero, ac
+                    hendrerit nunc finibus in. Fusce purus mauris, volutpat a feugiat sed, sagittis vitae nulla. Quisque
+                    at massa nulla. Duis risus lectus, porttitor ac bibendum et, dapibus a nulla. Cras posuere ligula et
+                    purus molestie, sagittis imperdiet lorem sodales. Praesent blandit enim ac sollicitudin tristique.
+                    Curabitur mi lectus, molestie congue iaculis a, porttitor a odio. Ut pharetra, lacus in blandit
+                    tincidunt, arcu massa auctor magna, eget elementum mauris nisi sit amet nisl. Nunc porta orci sit
+                    amet lorem egestas molestie.</p>
+                <div slot="card-footer">
+                    <button mat:button-raised-primary>Button in footer</button>
+                </div>
+                <div slot="card-footer-left">
+                    <button mat:button-raised-danger>Button in footer left</button>
+                </div>
+                <div slot="card-footer-right">
+                    <button mat:button-raised-success>Button in footer right</button>
+                </div>
+            </mat-card>
+        </div>
+
+        <div>
+            <h1>Checkbox</h1>
+
+            <input mat:checkbox="Hello World" type="checkbox" />
         </div>
 
 
@@ -46,27 +89,6 @@
 
 
 
-        <mat-card>
-            <span slot="header">Sign in here!</span>
-            <p slot="body" style="margin-top: 0;" class="body-p">Lorem ipsum dolor sit amet, consectetur adipiscing
-                elit. Aenean a augue vitae nibh tempus gravida sit amet id purus. Quisque ultricies porta libero, ac
-                hendrerit nunc finibus in. Fusce purus mauris, volutpat a feugiat sed, sagittis vitae nulla. Quisque
-                at massa nulla. Duis risus lectus, porttitor ac bibendum et, dapibus a nulla. Cras posuere ligula et
-                purus molestie, sagittis imperdiet lorem sodales. Praesent blandit enim ac sollicitudin tristique.
-                Curabitur mi lectus, molestie congue iaculis a, porttitor a odio. Ut pharetra, lacus in blandit
-                tincidunt, arcu massa auctor magna, eget elementum mauris nisi sit amet nisl. Nunc porta orci sit
-                amet lorem egestas molestie.</p>
-            <p slot="body" style="margin-top: 0;" class="body-p">Lorem ipsum dolor sit amet, consectetur adipiscing
-                elit. Aenean a augue vitae nibh tempus gravida sit amet id purus. Quisque ultricies porta libero, ac
-                hendrerit nunc finibus in. Fusce purus mauris, volutpat a feugiat sed, sagittis vitae nulla. Quisque
-                at massa nulla. Duis risus lectus, porttitor ac bibendum et, dapibus a nulla. Cras posuere ligula et
-                purus molestie, sagittis imperdiet lorem sodales. Praesent blandit enim ac sollicitudin tristique.
-                Curabitur mi lectus, molestie congue iaculis a, porttitor a odio. Ut pharetra, lacus in blandit
-                tincidunt, arcu massa auctor magna, eget elementum mauris nisi sit amet nisl. Nunc porta orci sit
-                amet lorem egestas molestie.</p>
-            <div slot="footer">
-            </div>
-        </mat-card>
     </div>
 </template>
 

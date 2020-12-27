@@ -9,6 +9,7 @@ import { InputsModule } from './modules/input/inputs.module';
 import { CardsModule } from './modules/card/cards.module';
 import { LoginModule } from './components/login/login.module';
 import { BadgeModule } from './modules/badge/badge.module';
+import { CheckboxModule } from './modules/checkbox/checkbox.module';
 
 const routes = [
   { path: '/ui-kit', component: UIKit },
@@ -28,7 +29,8 @@ class MainModule extends Module {
     ButtonsModule,
     InputsModule,
     CardsModule,
-    BadgeModule
+    BadgeModule,
+    CheckboxModule
   ];
 
   plugins = [
