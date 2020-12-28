@@ -1,0 +1,75 @@
+<template>
+    <span v:ref={this.$el} class="mat-chip">
+        <slot></slot>
+        <span v:if={this.close} on:click={this.close} class="mat-chip-close">×</span>
+    </span>
+</template>
+
+<script>
+    export default class Chip {
+        $el;
+        $shadowMode = 'open';
+        close;
+
+        $connected() {
+            this.setupClose();
+        }
+
+        setupClose() {
+            if (this.$props && this.$props.close) {
+                this.close = this.$props.close;
+            }
+        }
+
+        static get observedAttributes() {
+          return ['type'];
+        }
+
+        $attributeChanged(attrName, oldVal, newVal) {
+            this.$el.setAttribute('class', `mat-chip ${newVal}`);
+        }
+    }
+</script>
+
+<style>
+    .mat-chip {
+        height: 26px;
+        padding: 0 12px;
+        line-height: 26px;
+        display: inline-block;
+        background: #e0e0e0;
+        border-radius: 15px;
+        font-size: 13px;
+        font-family: Roboto;
+        margin: 2px 0;
+    }
+    .mat-chip.primary {
+        background: #4581e9;
+        color: white;
+    }
+    .mat-chip.danger {
+        background: #db2828;
+        color: white;
+    }
+    .mat-chip.success {
+        background: #21ba45;
+        color: white;
+    }
+    .mat-chip-close {
+        border: solid 1px #333;
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        line-height: 10px;
+        border-radius: 50%;
+        text-align: center;
+        margin-right: -3px;
+        margin-left: 5px;
+        cursor: pointer;
+    }
+    .primary .mat-chip-close,
+    .danger .mat-chip-close,
+    .success .mat-chip-close {
+        border: solid 1px white;
+    }
+</style>

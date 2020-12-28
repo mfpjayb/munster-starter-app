@@ -1,6 +1,7 @@
 import './style.css';
 import './modules/material.css';
 import { Module, initModule } from 'munster-module';
+import { Props } from 'munster-props';
 import { Router } from 'munster-router';
 import Root from './Root.html';
 import UIKit from './components/ui-kit/UIKit.html';
@@ -11,6 +12,7 @@ import { LoginModule } from './components/login/login.module';
 import { BadgeModule } from './modules/badge/badge.module';
 import { CheckboxModule } from './modules/checkbox/checkbox.module';
 import { RadioModule } from './modules/radio/radio.module';
+import { ChipsModule } from './modules/chips/chips.module';
 
 const routes = [
   { path: '/ui-kit', component: UIKit },
@@ -32,11 +34,13 @@ class MainModule extends Module {
     CardsModule,
     BadgeModule,
     CheckboxModule,
-    RadioModule
+    RadioModule,
+    ChipsModule
   ];
 
   plugins = [
-    Router.routes(routes)
+    Router.routes(routes),
+    Props
   ];
 
 }

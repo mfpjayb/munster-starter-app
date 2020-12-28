@@ -6,7 +6,7 @@
     "start": "webpack-dev-server",
     "build": "webpack",
     "test": "karma start",
-    "link": "npm link munster && npm link munster-module && npm link munster-loader && npm link munster-router"
+    "link": "npm link munster && npm link munster-module && npm link munster-loader && npm link munster-router && npm link munster-props"
   },
   "keywords": [],
   "author": "",

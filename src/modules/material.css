@@ -295,7 +295,6 @@ a:hover {
 }
 .mat-radio-input:checked + .mat-radio.default .mat-radio-check {
     background: #333;
-    /* background: var(--default-color); */
 }
 .mat-radio-input:checked + .mat-radio.primary .mat-radio-circle {
     border-color: var(--primary-color);
