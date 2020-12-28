@@ -15,7 +15,12 @@
             this.setupClose();
         }
 
+        $onPropsChange() {
+            console.log(this.$props);
+        }
+
         setupClose() {
+            console.log(this.$props);
             if (this.$props && this.$props.close) {
                 this.close = this.$props.close;
             }

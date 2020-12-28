@@ -87,10 +87,18 @@
                 <mat-chip type="success">Chip</mat-chip>
             </div>
             <div>
-                <mat-chip prop:close={this.close}>Chip</mat-chip>
-                <mat-chip type="primary" prop:close={this.close}>Chip</mat-chip>
-                <mat-chip type="danger" prop:close={this.close}>Chip</mat-chip>
-                <mat-chip type="success" prop:close={this.close}>Chip</mat-chip>
+                <span v:if={this.chips.default}>
+                    <mat-chip prop:close={() => this.close('default')}>Chip</mat-chip>
+                </span>
+                <span v:if={this.chips.primary}>
+                    <mat-chip type="primary" prop:close={() => this.close('primary')}>Chip</mat-chip>
+                </span>
+                <span v:if={this.chips.danger}>
+                    <mat-chip type="danger" prop:close={() => this.close('danger')}>Chip</mat-chip>
+                </span>
+                <span v:if={this.chips.success}>
+                    <mat-chip type="success" prop:close={() => this.close('success')}>Chip</mat-chip>
+                </span>
             </div>
         </div>
 
@@ -104,12 +112,19 @@
 <script>
     export default class UIKit {
         badge = 0;
+        chips = {
+            default: true,
+            primary: true,
+            danger: true,
+            success: true
+        };
+
         clickMe() {
             this.badge = this.badge + 1;
-            console.log('hello');
         }
-        close(data) {
-            console.log(data);
+
+        close(key) {
+            this.chips[key] = false;
         }
     }
 </script>
