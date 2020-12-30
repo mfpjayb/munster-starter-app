@@ -87,18 +87,10 @@
                 <mat-chip type="success">Chip</mat-chip>
             </div>
             <div>
-                <span v:if={this.chips.default}>
-                    <mat-chip prop:close={() => this.close('default')}>Chip</mat-chip>
-                </span>
-                <span v:if={this.chips.primary}>
-                    <mat-chip type="primary" prop:close={() => this.close('primary')}>Chip</mat-chip>
-                </span>
-                <span v:if={this.chips.danger}>
-                    <mat-chip type="danger" prop:close={() => this.close('danger')}>Chip</mat-chip>
-                </span>
-                <span v:if={this.chips.success}>
-                    <mat-chip type="success" prop:close={() => this.close('success')}>Chip</mat-chip>
-                </span>
+                <mat-chip v:if={this.chips.default} prop:close={() => this.close('default')}>Chip</mat-chip>
+                <mat-chip v:if={this.chips.primary} type="primary" prop:close={() => this.close('primary')}>Chip</mat-chip>
+                <mat-chip v:if={this.chips.danger} type="danger" prop:close={() => this.close('danger')}>Chip</mat-chip>
+                <mat-chip v:if={this.chips.success} type="success" prop:close={() => this.close('success')}>Chip</mat-chip>
             </div>
         </div>
 
@@ -123,7 +115,7 @@
             this.badge = this.badge + 1;
         }
 
-        close(key) {
+        close(key = 'default') {
             this.chips[key] = false;
         }
     }
