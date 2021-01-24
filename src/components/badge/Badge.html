@@ -1,0 +1,20 @@
+<template>
+    <div>
+        <h1>Badge</h1>
+        <p><span mat:badge={this.badge}>Default Badge</span></p>
+        <p><span mat:badge-primary={this.badge}>Primary Badge</span></p>
+        <p><span mat:badge-danger={this.badge}>Danger Badge</span></p>
+        <p><span mat:badge-success={this.badge}>Success Badge</span></p>
+        <button on:click={this.clickMe}>Increment Badge</button>
+    </div>
+</template>
+
+<script>
+    export default class Badge {
+        badge = 0;
+
+        clickMe() {
+            this.badge = this.badge + 1;
+        }
+    }
+</script>

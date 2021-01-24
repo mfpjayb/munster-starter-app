@@ -1,0 +1,207 @@
+<template>
+  <div class="mat-date-picker">
+    <div class="mat-date-picker-header">
+      <button class="navigation-btn" on:click={this.prev}>❮</button>
+      <div class="month-year-selector">
+        <button>{this.$monthList[this.month]} ▼</button>
+        <button>{this.year} ▼</button>
+      </div>
+      <button class="navigation-btn" on:click={this.next}>❯</button>
+    </div>
+    <div class="mat-date-picker-body">
+      <span class="calendar-cell date-header">Sun</span>
+      <span class="calendar-cell date-header">Mon</span>
+      <span class="calendar-cell date-header">Tue</span>
+      <span class="calendar-cell date-header">Wed</span>
+      <span class="calendar-cell date-header">Thu</span>
+      <span class="calendar-cell date-header">Fri</span>
+      <span class="calendar-cell date-header">Sat</span>
+
+      <button on:click={() => this.selectDate($item)} class={`calendar-cell ${$item.cls}`} v:for={this.dateArray}>{$item.date}</button>
+
+    </div>
+  </div>
+</template>
+
+<script>
+  export default class DatePicker {
+
+    dateArray = [];
+    year = null;
+    month = null;
+    $monthList = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    selectedDate = null;
+
+    constructor() {
+      this.selectedDate = new Date();
+      this.month = this.selectedDate.getMonth();
+      this.year = this.selectedDate.getFullYear();
+      this.drawCalendar();
+    }
+
+    $connected() {
+      this.triggerSelectCallback();
+    }
+
+    selectDate(date) {
+      this.selectedDate = new Date(`${date.month}/${date.date}/${date.year}`);
+      this.triggerSelectCallback();
+    }
+
+    triggerSelectCallback() {
+      if (this.$props && this.$props.onSelectDate) {
+        this.$props.onSelectDate(this.selectedDate);
+      }
+    }
+
+    drawCalendar() {
+      const dateArray = [];
+      const paddingCells = Array.from(Array(this.getFirstDay(this.year, this.month)).keys());
+      const prevMonthStartCount = this.getPrevMonthLastDate(this.year, this.month) - (paddingCells.length - 1);
+      paddingCells.forEach(date => {
+        const tempDate = new Date(`${this.month + 1}/${(prevMonthStartCount) + date}/${this.year}`)
+        tempDate.setMonth(tempDate.getMonth() - 1);
+        dateArray.push(this.generateCellDateObject(tempDate));
+      });
+      const dateCells = Array.from(Array(this.getDaysInMonth(this.year, this.month)).keys());
+      dateCells.forEach(date => {
+        const tempDate = new Date(`${this.month + 1}/${date + 1}/${this.year}`)
+        dateArray.push(this.generateCellDateObject(tempDate, true));
+      });
+      const endPaddingCells = Array.from(Array(this.getRemainingCells(dateCells.length, paddingCells.length)).keys());
+      endPaddingCells.forEach(date => {
+        const tempDate = new Date(`${this.month + 1}/${date + 1}/${this.year}`)
+        tempDate.setMonth(tempDate.getMonth() + 1);
+        dateArray.push(this.generateCellDateObject(tempDate));
+      });
+      this.dateArray = dateArray;
+    }
+
+    generateCellDateObject(tempDate, mainDate = false) {
+      return {
+        date: tempDate.getDate(),
+        year: tempDate.getFullYear(),
+        month: tempDate.getMonth() + 1,
+        cls: mainDate ? '' : 'other-month-cell'
+      };
+    }
+
+    prev() {
+      this.month--;
+      if (this.month < 0) {
+        this.month = 11;
+        this.year--;
+      }
+      this.drawCalendar();
+    }
+
+    next() {
+      this.month++;
+      if (this.month > 11) {
+        this.month = 0;
+        this.year++;
+      }
+      this.drawCalendar();
+    }
+
+    /**
+     * S = 0; M = 1; T = 2; W = 3; T = 4; F = 5; S = 6;
+     * Month starts with zero
+     */
+    getFirstDay(year, month) {
+      return (new Date(year, month)).getDay();
+    }
+
+    /**
+     * Month starts with zero
+     */
+    getDaysInMonth(year, month) { 
+      return 32 - new Date(year, month, 32).getDate();
+    }
+
+    getRemainingCells(daysLength, paddingLength) {
+      return 7 - ((daysLength + paddingLength) % 7);
+    }
+
+    getPrevMonthLastDate(year, month) {
+      const date = new Date(`${month + 1}/1/${year}`);
+      date.setDate(date.getDate() - 1);
+      return date.getDate();
+    }
+
+    clickMe() {
+      this.$props.changeCallback(new Date());
+    }
+  }
+</script>
+
+<style>
+  .mat-date-picker {
+    border-radius: 3px;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    background-color: #ffffff;
+    padding: 15px;
+    font-family: Roboto;
+    font-size: 14px;
+    position: relative;
+    display: inline-block;
+    width: 280px;
+  }
+  .mat-date-picker-header {
+    display: flex;
+    background: #4581e9;
+    padding: 15px 15px 15px 15px;
+    margin: -15px -15px 15px -15px;
+    border-radius: 3px 3px 0 0;
+  }
+  .mat-date-picker-body {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .mat-date-picker-body span,
+  .mat-date-picker-body button {
+    flex: calc(100% / 7);
+  }
+  .navigation-btn {
+    color: white;
+    width: 25px;
+    height: 25px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 2px;
+  }
+  .month-year-selector {
+    flex: 1;
+    text-align: center;
+  }
+  .month-year-selector button {
+    height: 25px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: white;
+  }
+  .calendar-cell {
+    height: 35px;
+    line-height: 33px;
+    text-align: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+  .other-month-cell {
+    color: #bcbcbc;
+  }
+  .calendar-cell:hover {
+    background: #f5f5f5;
+  }
+  .date-header {
+    cursor: initial;
+    outline: none;
+    font-size: 13px;
+  }
+  .date-header:hover {
+    background: transparent;
+  }
+</style>

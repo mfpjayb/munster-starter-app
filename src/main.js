@@ -13,11 +13,13 @@ import { BadgeModule } from './modules/badge/badge.module';
 import { CheckboxModule } from './modules/checkbox/checkbox.module';
 import { RadioModule } from './modules/radio/radio.module';
 import { ChipsModule } from './modules/chips/chips.module';
+import { DatePickerModule } from './modules/date-picker/date-picker.module';
 
 const routes = [
   { path: '/ui-kit', component: UIKit },
   { path: '/login', module: LoginModule }, // eager loading module
   { path: '/register', module: import('./components/register/register.module').then(mod => mod.RegisterModule) }, // Lazy loading module
+  { path: '/components', module: import('./components/components/components.module').then(mod => mod.ComponentsModule) }
 ];
 
 class MainModule extends Module {
@@ -35,7 +37,8 @@ class MainModule extends Module {
     BadgeModule,
     CheckboxModule,
     RadioModule,
-    ChipsModule
+    ChipsModule,
+    DatePickerModule
   ];
 
   plugins = [

@@ -1,33 +1,6 @@
 <template>
     <div class="ui-kit-page">
         <div>
-            <h1>Badge</h1>
-            <p><span mat:badge={this.badge}>Default Badge</span></p>
-            <p><span mat:badge-primary={this.badge}>Primary Badge</span></p>
-            <p><span mat:badge-danger={this.badge}>Danger Badge</span></p>
-            <p><span mat:badge-success={this.badge}>Success Badge</span></p>
-            <button on:click={this.clickMe}>Increment Badge</button>
-        </div>
-
-
-        <div>
-            <h1>Buttons</h1>
-            <button mat:button>Basic</button>
-            <button mat:button-primary>Basic</button>
-            <button mat:button-danger>Basic</button>
-            <button mat:button-success>Basic</button>
-            <br /><br />
-            <button mat:button-outline>Outline</button>
-            <button mat:button-outline-primary>Outline</button>
-            <button mat:button-outline-danger>Outline</button>
-            <button mat:button-outline-success>Outline</button>
-            <br /><br />
-            <button mat:button-raised>Raised</button>
-            <button mat:button-raised-primary>Raised</button>
-            <button mat:button-raised-danger>Raised</button>
-            <button on:click={this.clickMe} mat:button-raised-success>Raised</button>
-        </div>
-        <div>
             <h1>Card</h1>
             <mat-card style="width: 400px;">
                 <span slot="card-header">Sign in here!</span>
@@ -87,11 +60,19 @@
                 <mat-chip type="success">Chip</mat-chip>
             </div>
             <div>
-                <mat-chip v:if={this.chips.default} prop:close={() => this.close('default')}>Chip</mat-chip>
+                <mat-chip v:if={this.chips.default} prop:close={() => this.close()}>Chip</mat-chip>
                 <mat-chip v:if={this.chips.primary} type="primary" prop:close={() => this.close('primary')}>Chip</mat-chip>
                 <mat-chip v:if={this.chips.danger} type="danger" prop:close={() => this.close('danger')}>Chip</mat-chip>
                 <mat-chip v:if={this.chips.success} type="success" prop:close={() => this.close('success')}>Chip</mat-chip>
             </div>
+        </div>
+
+        <div>
+            <h1>Date Picker</h1>
+            <div>
+                <span>Date: {this.selectedDate}</span>
+            </div>
+            <mat-date-picker prop:onSelectDate={this.dateChange} />
         </div>
 
         <div>
@@ -110,13 +91,17 @@
             danger: true,
             success: true
         };
-
-        clickMe() {
-            this.badge = this.badge + 1;
+        selectedDate = null;
+        constructor() {
+            this.dateChange = this.dateChange.bind(this);
         }
 
         close(key = 'default') {
             this.chips[key] = false;
+        }
+
+        dateChange(date) {
+            this.selectedDate = date.toDateString();
         }
     }
 </script>
