@@ -1,0 +1,31 @@
+<template>
+    <div>
+        <h1>Chip</h1>
+        <div>
+            <mat-chip>Chip</mat-chip>
+            <mat-chip type="primary">Chip</mat-chip>
+            <mat-chip type="danger">Chip</mat-chip>
+            <mat-chip type="success">Chip</mat-chip>
+        </div>
+        <div>
+            <mat-chip v:if={this.chips.default} prop:close={()=> this.close()}>Chip</mat-chip>
+            <mat-chip v:if={this.chips.primary} type="primary" prop:close={()=> this.close('primary')}>Chip</mat-chip>
+            <mat-chip v:if={this.chips.danger} type="danger" prop:close={()=> this.close('danger')}>Chip</mat-chip>
+            <mat-chip v:if={this.chips.success} type="success" prop:close={()=> this.close('success')}>Chip</mat-chip>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default class Chip {
+        chips = {
+            default: true,
+            primary: true,
+            danger: true,
+            success: true
+        };
+        close(key = 'default') {
+            this.chips[key] = false;
+        }
+    }
+</script>

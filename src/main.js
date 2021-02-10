@@ -4,6 +4,7 @@ import { Module, initModule } from 'munster-module';
 import { Props } from 'munster-props';
 import { Router } from 'munster-router';
 import Root from './Root.html';
+import Sidebar from './components/Sidebar.html';
 import UIKit from './components/ui-kit/UIKit.html';
 import { ButtonsModule } from './modules/button/buttons.module';
 import { InputsModule } from './modules/input/inputs.module';
@@ -27,7 +28,8 @@ class MainModule extends Module {
   root = Root;
 
   components = [
-    UIKit
+    UIKit,
+    Sidebar
   ];
 
   modules = [

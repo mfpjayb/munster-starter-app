@@ -1,9 +1,10 @@
 <template>
   <div class="root-page">
-    <nav class="navbar"></nav>
+    <nav class="navbar">
+    </nav>
     <div class="root-body">
       <div class="sidebar">
-
+        <app-sidebar></app-sidebar>
       </div>
       <div class="main-content">
         <plug-router-outlet />
@@ -20,9 +21,12 @@
   }
   .navbar {
     height: 50px;
+    border-bottom: 1px solid #eceeef;
+    font-size: 14px;
   }
   .root-body {
     flex: 1;
+    overflow: auto;
     display: flex;
   }
   .sidebar {
