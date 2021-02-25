@@ -1,11 +1,20 @@
 const path = require('path');
+const config = {
+  component: {
+    extension: {
+      test: new RegExp('.html$'),
+      ext: 'html'
+    }
+  }
+};
 
 module.exports = {
   mode: 'development',
-  entry: ['@babel/polyfill', './src/main.js'],
+  // entry: ['@babel/polyfill', './src/index.js'],
+  entry: ['./src/index.js'],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js',
+    filename: 'index.js',
     publicPath: '/dist'
   },
   devServer: {
@@ -16,7 +25,7 @@ module.exports = {
      * route all request to index.html for spa
      */
     historyApiFallback: {
-      index: '/index.html'
+      index: '/src/index.html'
     },
 
 
@@ -56,7 +65,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.jsx$/,
+        test: config.component.extension.test,
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader',
@@ -79,7 +88,7 @@ module.exports = {
        * Munster loader
        */
       {
-        test: /\.html/,
+        test: config.component.extension.test,
         use: 'munster-loader',
         include: [
           path.resolve(__dirname, 'src')
