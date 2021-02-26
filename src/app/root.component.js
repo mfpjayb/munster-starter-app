@@ -1,10 +1,15 @@
+import { Component } from 'munster';
 import Template from './root.component.html';
+import Style from './root.component.css';
 
-export class RootComponent extends Template {
+@Component({
+  template: Template,
+  style: Style
+})
+export class RootComponent {
   counter = 0;
 
   clickMe() {
-    console.log('Hello World');
     this.counter++;
   }
 }

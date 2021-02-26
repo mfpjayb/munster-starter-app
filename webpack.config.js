@@ -1,12 +1,4 @@
 const path = require('path');
-const config = {
-  component: {
-    extension: {
-      test: new RegExp('.html$'),
-      ext: 'html'
-    }
-  }
-};
 
 module.exports = {
   mode: 'development',
@@ -36,14 +28,14 @@ module.exports = {
       /**
        * CSS loaders
        */
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-        exclude: [
-          path.resolve(__dirname, 'src/assets'),
-          path.resolve(__dirname, 'node_modules'),
-        ]
-      },
+      // {
+      //   test: /\.css$/,
+      //   use: ['style-loader', 'css-loader'],
+      //   exclude: [
+      //     path.resolve(__dirname, 'src/assets'),
+      //     path.resolve(__dirname, 'node_modules'),
+      //   ]
+      // },
 
 
       /**
@@ -56,7 +48,10 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env'],
-            plugins: ['@babel/plugin-proposal-class-properties']
+            plugins: [
+              ['@babel/plugin-proposal-decorators', { legacy: true }],
+              ['@babel/plugin-proposal-class-properties', { loose: true }]
+            ]
           }
         },
         exclude: [
@@ -65,7 +60,7 @@ module.exports = {
         ]
       },
       {
-        test: config.component.extension.test,
+        test: /.html$/,
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader',
@@ -88,10 +83,10 @@ module.exports = {
        * Munster loader
        */
       {
-        test: config.component.extension.test,
+        test: /(\.html$|\.css$)/,
         use: 'munster-loader',
         include: [
-          path.resolve(__dirname, 'src')
+          path.resolve(__dirname, 'src/app')
         ],
         exclude: [
           path.resolve(__dirname, 'src/assets'),
