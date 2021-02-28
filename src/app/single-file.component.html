@@ -7,7 +7,16 @@
 
 <script>
     export default class SingleFileComponent {
+
         count = 0;
+
+        $connected() {
+            console.log(this.$props);
+        }
+
+        $onPropsChange() {
+            console.log(this.$props);
+        }
 
         clickMe() {
             this.count++;

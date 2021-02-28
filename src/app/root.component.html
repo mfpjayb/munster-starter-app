@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h1 root:color={this.counter}>Hello World {this.counter}</h1>
-    <button on:click={this.clickMe}>I am a button</button>
+    <h1 root:colorx={this.counter} root:color={this.counter}>Hello World {this.counter}</h1>
+    <button app:color={this.counter} on:click={this.clickMe}>I am a button</button>
     <input value={this.counter} />
     <br />
-    <app-single-file-component></app-single-file-component>
+    <app-single-file-component prop:counter={this.counter}></app-single-file-component>
   </div>
 </template>

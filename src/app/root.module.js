@@ -1,6 +1,7 @@
-import { Module } from 'munster';
+import { Module, Props } from 'munster';
 import { RootComponent } from './root.component';
 import { RootDirective } from './root.directive';
+import { AppDirective } from './app.directive';
 import SingleFileComponent from './single-file.component.html';
 
 export class RootModule extends Module {
@@ -16,7 +17,9 @@ export class RootModule extends Module {
   modules = [ ];
 
   plugins = [
-    RootDirective
+    RootDirective,
+    AppDirective,
+    Props
   ];
 
 }

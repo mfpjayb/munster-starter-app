@@ -1,9 +1,15 @@
-import { Directive, createWatcher } from 'munster';
+import { Directive } from 'munster';
 
-export class RootDirective extends Directive {
-  static namespace = ['root:color', 'root:*'];
+export class AppDirective extends Directive {
+  // static namespace = ['root:*'];
+  static namespace = ['app:color', 'app:*'];
 
-  rootAll(name, valueCaller, element) {
+  constructor(component) {
+    super();
+    this.component = component;
+  }
+
+  appAll(name, valueCaller, element) {
     this.$watch(valueCaller, element, () => {
       const value = valueCaller();
       console.log('all');
@@ -13,7 +19,7 @@ export class RootDirective extends Directive {
     });
   }
 
-  rootColor(name, valueCaller, element) {
+  appColor(name, valueCaller, element) {
     // console.log('color here');
     // console.log(name);
     // console.log(valueCaller());

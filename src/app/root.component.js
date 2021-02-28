@@ -11,9 +11,6 @@ export class RootComponent {
   counter = 0;
 
   clickMe() {
-    if (!this.counter) {
-      this.counter = 0;
-    }
     this.counter++;
   }
 }
