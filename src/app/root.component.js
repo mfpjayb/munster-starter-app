@@ -7,9 +7,13 @@ import Style from './root.component.css';
   style: Style
 })
 export class RootComponent {
+
   counter = 0;
 
   clickMe() {
+    if (!this.counter) {
+      this.counter = 0;
+    }
     this.counter++;
   }
 }

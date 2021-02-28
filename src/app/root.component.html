@@ -1,7 +1,8 @@
 <template>
   <div>
-    <h1>Hello World {this.counter}</h1>
+    <h1 root:color={this.counter}>Hello World {this.counter}</h1>
     <button on:click={this.clickMe}>I am a button</button>
+    <input value={this.counter} />
     <br />
     <app-single-file-component></app-single-file-component>
   </div>
