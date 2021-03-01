@@ -1,9 +1,17 @@
 <template>
   <div>
-    <h1 root:colorx={this.counter} root:color={this.counter}>Hello World {this.counter}</h1>
-    <button app:color={this.counter} on:click={this.clickMe}>I am a button</button>
-    <input value={this.counter} />
-    <br />
-    <app-single-file-component prop:counter={this.counter}></app-single-file-component>
+    <ul>
+      <li>
+        <plug-link href="/login">Login</plug-link>
+      </li>
+      <li>
+        <plug-link href="/register">Register</plug-link>
+      </li>
+      <li>
+        <plug-link href="/">Home</plug-link>
+      </li>
+    </ul>
+    <button on:click={this.clickMe}>Click Me</button>
+    <plug-router-outlet></plug-router-outlet>
   </div>
 </template>

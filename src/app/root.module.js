@@ -1,25 +1,41 @@
-import { Module, Props } from 'munster';
+import { Module, Router, Store } from 'munster';
 import { RootComponent } from './root.component';
-import { RootDirective } from './root.directive';
-import { AppDirective } from './app.directive';
-import SingleFileComponent from './single-file.component.html';
+import LoginComponent from './login.component.html';
+// import { RegisterModule } from './register.module';
+
+const routes = [
+  { path: '/login', component: LoginComponent },
+  { path: '/register', module: import('./register.module').then(mod => mod.RegisterModule) }
+];
+
+const store = {
+  state: {
+    count: 0
+  },
+  actions: {
+    count: {
+      setCount: (current, payload) => {
+        return payload;
+      }
+    }
+  }
+};
 
 export class RootModule extends Module {
-
-  prefix = 'app';
 
   rootComponent = RootComponent;
 
   components = [
-    SingleFileComponent
+    LoginComponent
   ];
 
-  modules = [ ];
+  // modules = [
+  //   RegisterModule
+  // ];
 
   plugins = [
-    RootDirective,
-    AppDirective,
-    Props
+    Router.routes(routes),
+    Store.config(store)
   ];
 
 }

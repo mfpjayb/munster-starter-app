@@ -12,5 +12,6 @@ export class RootComponent {
 
   clickMe() {
     this.counter++;
+    this.$store.count.dispatch('setCount', this.counter);
   }
 }
