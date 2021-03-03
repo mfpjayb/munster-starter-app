@@ -2,8 +2,8 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  // entry: ['@babel/polyfill', './src/index.js'],
-  entry: ['./src/index.js'],
+  entry: ['@babel/polyfill', './src/index.js'],
+  // entry: ['./src/index.js'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
