@@ -1,12 +1,10 @@
 {
-  "name": "munster-starter-app",
+  "name": "munster-app",
   "version": "1.0.0",
-  "main": "src/main.js",
+  "main": "src/index.js",
   "scripts": {
     "start": "webpack serve",
-    "build": "webpack",
-    "test": "karma start",
-    "link": "npm link munster && npm link munster-loader"
+    "build": "webpack"
   },
   "keywords": [],
   "author": "",
