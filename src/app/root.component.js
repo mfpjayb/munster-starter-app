@@ -7,11 +7,4 @@ import Style from './root.component.css';
   style: Style
 })
 export class RootComponent {
-
-  counter = 0;
-
-  clickMe() {
-    this.counter++;
-    this.$store.count.dispatch('setCount', this.counter);
-  }
 }
